@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tasks — TaskPilot</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js?v=3" defer></script>
+</head>
+<body>
+  <main>
+    <nav class="navigation" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">✓</span>TaskPilot</a>
+      <div><a class="nav-link" href="#tasks">Tasks</a><a class="nav-link" href="#integrations">Integrations</a></div>
+    </nav>
+    <header class="app-heading"><h1>Turn your messages into tasks.</h1><p>Paste an email, meeting note, Slack message or client request.</p></header>
+    <section class="card composer" aria-labelledby="message-label">
+      <form id="extract-form">
+        <label id="message-label" for="message">Start with a message</label>
+        <textarea id="message" required maxlength="50000" placeholder="Paste an email, Slack message, meeting note, or client request..."></textarea>
+        <div class="form-footer"><span id="loading" role="status" hidden>Extracting tasks and updating Notion...</span><button id="extract-button" type="submit">Extract Tasks</button></div>
+      </form>
+    </section>
+    <p id="feedback" role="status" aria-live="polite" hidden></p>
+    <section id="tasks" class="card" aria-labelledby="tasks-heading">
+      <div class="section-heading"><h2 id="tasks-heading">Your tasks</h2><p class="section-note">New tasks sync to Notion automatically.</p></div>
+      <p id="empty-state">No tasks yet. Paste a message above to extract your first action items.</p>
+      <div id="table-container" class="table-container" hidden>
+        <table><thead><tr><th>Task</th><th>Category</th><th>Assignee</th><th>Deadline</th><th>Priority</th><th>Status</th><th>Actions</th></tr></thead><tbody id="task-rows"></tbody></table>
+      </div>
+    </section>
+    <section id="integrations" class="integrations-section" aria-labelledby="integrations-heading">
+      <h2 id="integrations-heading">Integrations</h2>
+      <p class="section-note">Notion syncs after extraction. Status reflects local configuration.</p>
+      <div class="integration-grid">
+        <article class="card integration-card"><div><h3>Notion</h3><span id="notion-status" class="badge" role="status">Checking…</span></div><p>Automatically sync extracted tasks to your Notion task database.</p></article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
